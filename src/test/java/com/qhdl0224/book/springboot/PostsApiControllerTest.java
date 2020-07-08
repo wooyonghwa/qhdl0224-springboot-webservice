@@ -102,5 +102,14 @@ public class PostsApiControllerTest {
         assertThat(posts.getCreateDate()).isAfter(now);
         assertThat(posts.getModifiedDate()).isAfter(now);
     }
+    @Test
+    public void posts_삭제() throws Exception{
+        Posts savedPosts = postsRepository.save(Posts.builder().title("title").content("content").author("author").build());
+        Long searchId = savedPosts.getId();
+        String url = "http://localhost:"+port+"/api/v1/posts";
+
+        restTemplate.delete(url,searchId);
+
+    }
 
 }

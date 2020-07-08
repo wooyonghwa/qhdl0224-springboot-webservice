@@ -35,4 +35,14 @@ public class PostsRepositoryTest {
         assertThat(posts.getTitle()).isEqualTo(all.get(0).getTitle());
         assertThat(posts.getContent()).isEqualTo(all.get(0).getContent());
     }
+    @Test
+    public void 게시글_삭제(){
+        Posts posts = postsRepository.save(Posts.builder().title("title").content("content").author("author").build());
+        List<Posts> all = postsRepository.findAll();
+        assertThat(all.size()).isGreaterThan(0);
+
+        postsRepository.delete(posts);
+        List<Posts> all2 = postsRepository.findAll();
+        assertThat(all2.size()).isEqualTo(0);
+    }
 }
