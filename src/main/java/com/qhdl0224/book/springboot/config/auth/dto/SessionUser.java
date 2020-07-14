@@ -4,6 +4,7 @@ import com.qhdl0224.book.springboot.domain.user.User;
 import lombok.Getter;
 
 import java.io.Serializable;
+//인증된 사용자 정보만 저장하는 class
 @Getter
 public class SessionUser implements Serializable {
     private String name;

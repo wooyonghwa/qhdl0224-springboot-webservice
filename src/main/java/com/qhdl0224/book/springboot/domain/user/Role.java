@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum Role {
 
+    /*Spring security 에선 ROLE_ 로 시작해야함*/
     GUEST("ROLE_GUEST", "손님"),
     USER("ROLE_USER", "일반 사용자");
 
