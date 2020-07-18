@@ -13,6 +13,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     private final LoginUserArgumentResolver loginUserArgumentResolver;
 
+    /*스프링이 @LoginUser 어노테이션 인식할 수 있도록 추가*/
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers){
         argumentResolvers.add(loginUserArgumentResolver);

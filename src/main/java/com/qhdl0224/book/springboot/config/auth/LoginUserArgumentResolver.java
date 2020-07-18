@@ -18,6 +18,7 @@ public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver 
 
     @Override
     public boolean supportsParameter(MethodParameter parameter){
+        /* 파라미터에 @LoginUser 어노테이션이 붙어있고 파라미터 클래스 타입이 SeesionUser이면*/
         boolean isLoginUserAnnotation = parameter.getParameterAnnotation(LoginUser.class)!=null;
         boolean isUserClass= SessionUser.class.equals(parameter.getParameterType());
         return isLoginUserAnnotation && isUserClass;
@@ -26,6 +27,7 @@ public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver 
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer,
                                     NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception{
+        /* 파라미터로 전달할 값, 여기선 세션 객체*/
         return httpSession.getAttribute("user");
     }
 }
