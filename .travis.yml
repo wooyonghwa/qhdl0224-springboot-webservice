@@ -15,6 +15,22 @@ cache:
 
 script: "./gradlew clean build"
 
+before_deploy:
+  - zip -r qhdl0224-springboot-webservice *
+  - mkdir -p deploy
+  - mv qhdl0224-springboot-webservice.zip deploy/qhdl0224-springboot-webservice.zip
+
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: qhdl0224-springboot-build
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: private
+    local_dir: deploy
+    wait-until-deployed:true
+
 # CI 실행 완료시 메일로 알람
 
 notifications:
